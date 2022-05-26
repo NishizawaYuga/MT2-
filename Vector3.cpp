@@ -1,8 +1,10 @@
 #include "Vector3.h"
 #include <cmath>		// sqrt
+#include <DxLib.h>
+#include <atltypes.h>
 
 Vector3::Vector3()
-	: x(0), y(0), z(0)
+	: Vector3(0,0,0)
 {
 }
 
@@ -33,7 +35,11 @@ float Vector3::dot(const Vector3& v) const
 
 Vector3 Vector3::cross(const Vector3& v) const
 {
-	return Vector3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
+	Vector3 temp;
+	temp.x = this->y * v.z - this->z * v.y;
+	temp.y = this->z * v.x - this->x * v.z;
+	temp.z = this->x * v.y - this->y * v.x;
+	return temp;
 }
 
 Vector3 Vector3::operator+() const
